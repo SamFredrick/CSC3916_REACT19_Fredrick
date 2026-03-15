@@ -14,17 +14,20 @@ const MovieDetail = () => {
   }, [dispatch, movieId]);
 
   if (!selectedMovie) {
-    return <div>No movie data available.</div>;
+    return <div className="m-3">Loading movie...</div>;
   }
 
   return (
-    <Card className="bg-dark text-white p-4 rounded m-3">
-      <Card.Header>Movie Detail</Card.Header>
+    <Card className="bg-white text-dark p-4 rounded m-3 shadow">
+      <Card.Header className="bg-dark text-white">
+        Movie Detail
+      </Card.Header>
 
-      <ListGroup>
+      <ListGroup className="mt-3">
         <ListGroupItem><b>Title:</b> {selectedMovie.title}</ListGroupItem>
         <ListGroupItem><b>Genre:</b> {selectedMovie.genre}</ListGroupItem>
         <ListGroupItem><b>Release Date:</b> {selectedMovie.releaseDate}</ListGroupItem>
+
         <ListGroupItem>
           <b>Actors:</b>
           {(selectedMovie.actors || []).map((actor, i) => (
@@ -35,7 +38,7 @@ const MovieDetail = () => {
         </ListGroupItem>
       </ListGroup>
 
-      <Card.Body className="bg-white text-dark">
+      <Card.Body>
         {(selectedMovie.reviews || []).length > 0 ? (
           selectedMovie.reviews.map((review, i) => (
             <p key={i}>
